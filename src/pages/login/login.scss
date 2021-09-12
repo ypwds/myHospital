@@ -1,0 +1,22 @@
+page-login {
+    .flex-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        flex-direction: column;
+
+        ion-list {
+            width: 100%;
+        }
+
+        img {
+            transition: transform 0.2s;
+            &:hover {
+                transform: scale(1.2);
+            }
+            max-width: 50%;
+            height: 30%;
+        }
+    }
+}
