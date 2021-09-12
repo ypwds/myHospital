@@ -1,18 +1,34 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Home</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+    <ion-card>
+        <ion-card-header>
+            Explore Nearby
+        </ion-card-header>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v3">docs</a> will show you the way.
-  </p>
+        <ion-list>
+            <button ion-item>
+                <ion-icon name="medkit" item-start></ion-icon>
+                Hospitais
+            </button>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+            <button ion-item>
+                <ion-icon name="person" item-start></ion-icon>
+                Médicos
+            </button>
+
+            <button ion-item>
+                <ion-icon name="people" item-start></ion-icon>
+                Pacientes
+            </button>
+
+        </ion-list>
+    </ion-card>
 </ion-content>
