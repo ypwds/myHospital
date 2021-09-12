@@ -18,8 +18,18 @@ export class LoginPage {
         console.log('ionViewDidLoad LoginPage');
     }
 
-    entrar(){
+    entrar() {
         console.log("Entrando...");
+    }
+
+    cadastrarUsuario() { //Abrir a tela de cadastro de usuário
+        this.navCtrl.push('CadastroUsuarioPage');
+        console.log("Cadastrando...");
+    }
+
+    recuperarSenha() { //Abrir a tela de recuperação de senha do usuário
+        this.navCtrl.push('RecuperarSenhaPage');
+        console.log("Recuperando senha....");
     }
 
 }
