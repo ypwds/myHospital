@@ -19,6 +19,8 @@ export class LoginPage {
     }
 
     entrar() {
+        this.email;
+        this.senha;
         console.log("Entrando...");
     }
 
