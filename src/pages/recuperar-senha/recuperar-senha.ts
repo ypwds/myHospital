@@ -1,25 +1,47 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the RecuperarSenhaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AlertController, IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
+import { UserProvider } from '../../providers/user/user';
 
 @IonicPage()
 @Component({
-  selector: 'page-recuperar-senha',
-  templateUrl: 'recuperar-senha.html',
+    selector: 'page-recuperar-senha',
+    templateUrl: 'recuperar-senha.html',
 })
 export class RecuperarSenhaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    email = '';
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RecuperarSenhaPage');
-  }
+    constructor(public navCtrl: NavController,
+        public navParams: NavParams,
+        public alertCtrl: AlertController,
+        public loadingCtrl: LoadingController,
+        public userProvider: UserProvider
+    ) {
+    }
+
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad RecuperarSenhaPage');
+    }
+
+    recuperar() {
+        const loader = this.loadingCtrl.create({
+            content: "Aguarde...",
+        });
+        loader.present();
+
+        this.userProvider.recuperarSenha(this.email);
+
+        loader.dismiss()
+        this.showAlert();
+    }
+
+    showAlert() {
+        const alert = this.alertCtrl.create({
+            title: 'Olá',
+            subTitle: 'Mandamos um email para você, abra-o para recuperar sua senha.',
+            buttons: ['OK']
+        });
+        alert.present();
+    }
 
 }

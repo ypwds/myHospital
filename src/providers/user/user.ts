@@ -12,8 +12,8 @@ export class UserProvider {
         console.log('Hello UserProvider Provider');
     }
 
-    login() {
-
+    login(email, senha) {
+        return this.afa.auth.signInWithEmailAndPassword(email, senha);
     }
 
     cadastro(usuario) {
@@ -24,14 +24,14 @@ export class UserProvider {
 
                 this.salvarUser(usuario);
             }).catch(error => {
-                console.log(error);  
+                console.log(error);
                 //Colocar um alerte...
             })
             ;
     }
 
-    recuperarSenha() {
-
+    recuperarSenha(email) {
+        return this.afa.auth.sendPasswordResetEmail(email);
     }
 
     salvarUser(usuario) {
