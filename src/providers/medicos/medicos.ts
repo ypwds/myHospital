@@ -11,17 +11,23 @@ export class MedicosProvider {
         console.log('Hello MedicosProvider Provider');
     }
 
-    listar() { //MODIFICA AINDA...
-        return this.afd.list('/medicos').valueChanges();
+    listar() {
+        //return this.afd.list('/medicos').valueChanges();
+        return this.afd.list(this.ENTIDADE)
+            .snapshotChanges()
+            .map(item => item.map(changes => ({ key: changes.payload.key, value: changes.payload.val() })));
     }
-    inserir(medico) { 
+    inserir(medico) {
+        medico.status = true;
+        medico.especialidades = medico.especialidades.split(', '); //salvando a esp. em array
         return this.afd.list(this.ENTIDADE).push(medico);
     }
 
-    atualizar(id, medico) { 
+    atualizar(id, medico) {
+        medico.especialidades = medico.especialidades.split(', '); //atualizando a esp. em array
         return this.afd.object(this.ENTIDADE + '/' + id).update(medico);
     }
-    
+
     remover(id) {
         return this.afd.object(this.ENTIDADE + '/' + id).remove();
     }

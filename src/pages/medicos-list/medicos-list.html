@@ -8,14 +8,14 @@
 </ion-header>
 
 <ion-content class="outer-content" padding>
-    <ion-list>
+    <ion-list no-lines>
         <ion-item-sliding *ngFor="let item of medicos">
             <ion-item>
                 <h2>{{item.value.nome}}</h2>
-                <p>CRM: {{item.value.telefone}}</p>
+                <p>CRM: {{item.value.crm}}</p>
             </ion-item>
             <ion-item-options>
-                <button ion-button color="light" icon-start>
+                <button ion-button color="light" (click)="detalhar(item)" icon-start>
                     <ion-icon name="clipboard"></ion-icon>
                     Ver
                 </button>
@@ -23,7 +23,7 @@
                     <ion-icon name="create"></ion-icon>
                     Editar
                 </button>
-                <button ion-button color="secondary" (click)="excluir()" *ngIf="alunoID !== undefined" icon-start>
+                <button ion-button color="danger" (click)="excluir(item)" icon-start>
                     <ion-icon name="trash"></ion-icon>
                     Excluir
                 </button>

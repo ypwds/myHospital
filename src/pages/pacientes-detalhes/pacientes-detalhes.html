@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Paciente {{paciente?.value.nome}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-item no-lines>
+        <ion-thumbnail item-start>
+            <img src="https://cdn-icons-png.flaticon.com/512/706/706192.png">
+        </ion-thumbnail>
+        <p>Telefone: {{paciente?.value.telefone}}</p>
+        <p>Endereço: {{paciente?.value.endereco}}</p>
+        <p>{{paciente?.value.cidade}}, {{paciente?.value.uf}}</p>
+        <p>Convênio: {{paciente?.value.convenio}}</p>
+
+    </ion-item>
+</ion-content>

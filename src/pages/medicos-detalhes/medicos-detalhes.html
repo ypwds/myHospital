@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Dr. {{medico?.value.nome}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item no-lines>
+        <ion-thumbnail item-start>
+            <img src="https://www.iconpacks.net/icons/1/free-doctor-icon-294-thumb.png">
+        </ion-thumbnail>
+        <h2>{{medico?.value.nome}}</h2>
+        <p>CRM: {{medico?.value.crm}}</p>
+        <p>Telefone: {{medico?.value.telefone}}</p>
+    </ion-item>
+    <ion-item no-lines>
+        <p>Especialidades</p>
+        <ion-list no-lines *ngFor="let item of medico?.value.especialidades">
+            <li class="conteudos">{{item}}</li>
+        </ion-list>
+    </ion-item>
+</ion-content>

@@ -38,6 +38,13 @@ export class PacientesListPage {
         this.navCtrl.push('PacientesFormPage', { itemID: pacienteID, item: paciente });
     }
 
+    detalhar(item) {
+        console.log("Entrando na tela de detalhes...")
+        console.log("Dados: ", item);
+
+        this.navCtrl.push('PacientesDetalhesPage', { detalhe: item });
+    }
+
     excluir(item) {
         const pacienteID = item.key;
         const confirm = this.alertCtrl.create({
@@ -56,7 +63,8 @@ export class PacientesListPage {
 
                         this.pacientesProvider.remover(pacienteID)
                             .then(_ => {
-                                console.log('ok')
+                                console.log('ok');
+                                this.presentToast('Paciente excluido com sucesso!');
                             })
                             .catch(error => {
                                 console.log('error', error);

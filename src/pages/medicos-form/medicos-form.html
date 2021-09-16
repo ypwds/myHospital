@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Novo Médico</ion-title>
+        <ion-title>{{titulo}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -28,8 +28,8 @@
         </ion-item>
 
         <ion-buttons right start>
-            <button ion-button icon-only round>
-                <ion-icon name="bookmarks" (click)="salvar()"></ion-icon>
+            <button ion-button icon-only round (click)="salvar()">
+                <ion-icon name="bookmarks"></ion-icon>
             </button>
         </ion-buttons>
     </ion-list>

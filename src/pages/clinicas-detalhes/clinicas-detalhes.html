@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{clinica?.value.nome}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item no-lines>
+    <ion-thumbnail item-start>
+      <img src="https://cdn.iconscout.com/icon/free/png-256/clinic-1450835-1226364.png">
+    </ion-thumbnail>
+    <h2>Clínica: {{clinica?.value.nome}}</h2>
+    <p>Endereço: {{clinica?.value.endereco}}</p>
+    <p>{{clinica?.value.cidade}} - {{clinica?.value.uf}}</p>
+  </ion-item>
+
+</ion-content>

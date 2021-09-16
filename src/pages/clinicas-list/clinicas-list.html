@@ -1,15 +1,47 @@
-<!--
-  Generated template for the ClinicasListPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>clinicas-list</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Lista de Clínicas</ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
-</ion-content>
+    <ion-content class="outer-content" padding>
+        <ion-list no-lines>
+            <ion-item-sliding *ngFor="let item of clinicas">
+                <ion-item>
+                    <!--<h2>{{item.nome}}</h2>
+                    <p>Telefone: {{item.telefone}}</p> -->
+                    <h2>{{item.value.nome}}</h2>
+                    <p>{{item.value.cidade}} - {{item.value.uf}}</p>
+                </ion-item>
+                <ion-item-options>
+                    <button ion-button color="light" (click)="detalhar(item)" icon-start>
+                        <ion-icon name="clipboard"></ion-icon>
+                        Ver
+                    </button>
+
+                    <button ion-button color="primary" (click)="editItem(item)" icon-start>
+                        <ion-icon name="create"></ion-icon>
+                        Editar
+                    </button>
+
+                    <button ion-button color="danger" (click)="excluir(item)" icon-start>
+                        <ion-icon name="trash"></ion-icon>
+                        Excluir
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+
+        </ion-list>
+
+        <ion-fab right bottom>
+            <button ion-fab color="primary" (click)="addItem()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-fab>
+
+    </ion-content>

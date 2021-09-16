@@ -12,6 +12,8 @@ export class MedicosFormPage {
 
     titulo = '';
 
+    especialidades = '';
+
     medicoID = undefined;
     medico = new Medico();
 
@@ -31,13 +33,13 @@ export class MedicosFormPage {
             this.medicoID = medicoID;
             this.medico = medico;
 
-            this.titulo = 'Atualizar';
+            this.titulo = 'Editar Médico';
 
         } else {
             this.medicoID = undefined;
             this.medico = new Medico();
 
-            this.titulo = 'Inserir';
+            this.titulo = 'Novo Médico';
         }
     }
 
@@ -49,15 +51,18 @@ export class MedicosFormPage {
         console.log(this.medico);
 
         if (this.medicoID) { // atualizar
+            
+            //this.medico.especialidades = this.medico.especialidades.split(', ');
 
             this.medicoProvider.atualizar(this.medicoID, this.medico).then(_ => {
-                this.presentToast('Aluno atualizado com sucesso!');
+                this.presentToast('Médico atualizado com sucesso!');
+                this.navCtrl.pop();
             })
 
         } else { // inserir
 
             this.medicoProvider.inserir(this.medico).then(_ => {
-                this.presentToast('Aluno inserido com sucesso!');
+                this.presentToast('Médico inserido com sucesso!');
                 this.navCtrl.pop();
             });
         }

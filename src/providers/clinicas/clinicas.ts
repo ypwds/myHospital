@@ -11,8 +11,11 @@ export class ClinicasProvider {
         console.log('Hello ClinicasProvider Provider');
     }
 
-    listar() { //MODIFICA AINDA...
-        return this.afd.list('/clinicas').valueChanges();
+    listar() {
+        //return this.afd.list('/clinicas').valueChanges();
+        return this.afd.list(this.ENTIDADE)
+            .snapshotChanges()
+            .map(item => item.map(changes => ({ key: changes.payload.key, value: changes.payload.val() })));
     }
     inserir(clinica) {
         return this.afd.list(this.ENTIDADE).push(clinica);

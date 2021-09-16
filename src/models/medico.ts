@@ -3,6 +3,6 @@ export class Medico {
     nome: string = '';
     crm: string = '';
     telefone: string = '';
-    especialidades: string[];
+    especialidades: string[] = [];
     status: boolean = false;
 }
