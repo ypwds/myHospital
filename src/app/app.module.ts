@@ -16,6 +16,9 @@ import { UserProvider } from '../providers/user/user';
 import { env } from '../env/env';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
+import { MedicosProvider } from '../providers/medicos/medicos';
+import { PacientesProvider } from '../providers/pacientes/pacientes';
+import { ClinicasProvider } from '../providers/clinicas/clinicas';
 
 /* const firebaseConfig = {
   apiKey: "AIzaSyACn05thv-AWI_hbgnb62K5hu_oqfd8nC0",
@@ -54,7 +57,10 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider
+    UserProvider,
+    MedicosProvider,
+    PacientesProvider,
+    ClinicasProvider
   ]
 })
 export class AppModule {}

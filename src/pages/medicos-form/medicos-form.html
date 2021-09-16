@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Novo Médico</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list no-lines>
+
+        <ion-item>
+            <ion-label stacked>Nome</ion-label>
+            <ion-input type="text" [(ngModel)]="medico.nome"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>CRM</ion-label>
+            <ion-input type="text" [(ngModel)]="medico.crm"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Telefone</ion-label>
+            <ion-input type="text" [(ngModel)]="medico.telefone"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Especialidades</ion-label>
+            <ion-input type="text" [(ngModel)]="medico.especialidades"></ion-input>
+        </ion-item>
+
+        <ion-buttons right start>
+            <button ion-button icon-only round>
+                <ion-icon name="bookmarks" (click)="salvar()"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-list>
+
+</ion-content>
