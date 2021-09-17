@@ -1,5 +1,7 @@
 {
   "name": "myHospital",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
