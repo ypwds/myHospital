@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AlertController, IonicPage, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { PacientesProvider } from '../../providers/pacientes/pacientes';
 
 @IonicPage()
@@ -16,11 +16,9 @@ export class PacientesListPage {
         public toastCtrl: ToastController,
         public alertCtrl: AlertController,
         public pacientesProvider: PacientesProvider,
+        public modalCtrl: ModalController
     ) {
-        this.pacientesProvider.listar().subscribe(_data => {
-            console.log(_data);
-            this.pacientes = _data;
-        })
+        this.carregarLista();
     }
 
     ionViewDidLoad() {
@@ -86,6 +84,41 @@ export class PacientesListPage {
             closeButtonText: 'Ok'
         });
         toast.present();
+    }
+
+    openFilter() {
+        const modal = this.modalCtrl.create('PacientesFilterPage');
+
+        modal.onDidDismiss(_params => {
+            if (_params !== undefined) {
+
+                if (_params.isLimpar) {
+
+                    console.log("isLimpar");
+                    this.carregarLista();
+
+                } else {
+
+                    let cidade = _params.cidade;
+                    console.log("Cidade: ", cidade);
+
+                    this.pacientesProvider.buscar(cidade).subscribe(_data => {
+                        console.log("Busca: ", _data);
+                        this.pacientes = _data;
+                    })
+
+                }
+            }
+        });
+
+        modal.present();
+    }
+
+    carregarLista() {
+        this.pacientesProvider.listar().subscribe(_data => {
+            console.log(_data);
+            this.pacientes = _data;
+        });
     }
 
 }

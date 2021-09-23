@@ -17,6 +17,13 @@ export class PacientesProvider {
             .snapshotChanges()
             .map(item => item.map(changes => ({ key: changes.payload.key, value: changes.payload.val() })));
     }
+
+    buscar(cidade: string) {
+        return this.afd.list(this.ENTIDADE, ref => ref.orderByChild('cidade').equalTo(cidade))
+            .snapshotChanges()
+            .map(item => item.map(changes => ({ key: changes.payload.key, value: changes.payload.val() })));
+    }
+
     inserir(paciente) {
         //paciente.status = true;
         return this.afd.list(this.ENTIDADE).push(paciente);

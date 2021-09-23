@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Filtrar Pacientes</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="fechar()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>Cidade</ion-label>
+            <ion-select [(ngModel)]="cidade" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let city of cidadeArr" value="{{city}}">{{city}}</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button full (click)="filtrar()">Filtrar</button>
+    <button ion-button full (click)="limpar()" color='light'>Limpar</button>
+</ion-content>
