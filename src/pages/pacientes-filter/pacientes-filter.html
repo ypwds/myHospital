@@ -13,6 +13,12 @@
 <ion-content padding>
     <ion-list>
         <ion-item>
+            <ion-label>UF</ion-label>
+            <ion-select [(ngModel)]="uf" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let uf of ufArr" value="{{uf}}">{{uf}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
             <ion-label>Cidade</ion-label>
             <ion-select [(ngModel)]="cidade" cancelText="Cancelar" okText="Ok">
                 <ion-option *ngFor="let city of cidadeArr" value="{{city}}">{{city}}</ion-option>

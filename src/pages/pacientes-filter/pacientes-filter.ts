@@ -10,6 +10,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PacientesFilterPage {
 
     cidade = '';
+    uf = '';
+
     cidadeArr = [
         'Aliança',
         'Nazaré da Mata',
@@ -17,8 +19,14 @@ export class PacientesFilterPage {
         'Recife',
         'Olinda',
         'Paulista',
-        'Timbaúba'
+        'João Pessoa',
+        'Campina Grande'
     ];
+
+    ufArr = [
+        'PB',
+        'PE',
+      ]
 
     constructor(
         public navCtrl: NavController,
@@ -37,6 +45,7 @@ export class PacientesFilterPage {
 
     limpar() {
         const params = {
+            uf: this.uf,
             cidade: this.cidade,
             isLimpar: true,
         };
@@ -45,6 +54,7 @@ export class PacientesFilterPage {
 
     filtrar() {
         const params = {
+            uf: this.uf,
             cidade: this.cidade,
             isLimpar: false
         };

@@ -46,21 +46,24 @@ export class PacientesFormPage {
     }
 
     salvar() {
+        console.log(this.paciente);
         /* this.paciente.status = true;
         console.log(this.paciente);
         this.pacientesProvider.inserir(this.paciente); */
 
         if (this.pacienteID) { // atualizar
 
-            this.pacientesProvider.atualizar(this.pacienteID, this.paciente).then(_ => {
+            /* this.pacientesProvider.atualizar(this.pacienteID, this.paciente).then(_ => { */
+            this.pacientesProvider.atualizarFS(this.pacienteID, this.paciente).then(_ => {
                 this.presentToast('Paciente atualizado com sucesso!');
                 this.navCtrl.pop();
-            })
+            });
 
         } else { // inserir
             this.paciente.status = true;  //setando o status do paciente para true.
 
-            this.pacientesProvider.inserir(this.paciente).then(_ => {
+            /* this.pacientesProvider.inserir(this.paciente).then(_ => { */
+            this.pacientesProvider.inserirFS(this.paciente).then(_ => {
                 this.presentToast('Paciente inserido com sucesso!');
                 this.navCtrl.pop();
             });

@@ -59,14 +59,15 @@ export class PacientesListPage {
                     text: 'Excluir',
                     handler: () => {
 
-                        this.pacientesProvider.remover(pacienteID)
+                        /* this.pacientesProvider.remover(pacienteID) */
+                        this.pacientesProvider.removerFS(pacienteID)
                             .then(_ => {
                                 console.log('ok');
                                 this.presentToast('Paciente excluido com sucesso!');
                             })
                             .catch(error => {
                                 console.log('error', error);
-                            })
+                            });
 
                     }
                 }
@@ -100,9 +101,11 @@ export class PacientesListPage {
                 } else {
 
                     let cidade = _params.cidade;
+                    let uf = _params.uf;
+                    console.log("Estado: ", uf);
                     console.log("Cidade: ", cidade);
 
-                    this.pacientesProvider.buscar(cidade).subscribe(_data => {
+                    this.pacientesProvider.buscarFS(uf, cidade).subscribe(_data => {
                         console.log("Busca: ", _data);
                         this.pacientes = _data;
                     })
@@ -115,7 +118,8 @@ export class PacientesListPage {
     }
 
     carregarLista() {
-        this.pacientesProvider.listar().subscribe(_data => {
+        /* this.pacientesProvider.listar().subscribe(_data => { */
+        this.pacientesProvider.listarFS().subscribe(_data => {
             console.log(_data);
             this.pacientes = _data;
         });
