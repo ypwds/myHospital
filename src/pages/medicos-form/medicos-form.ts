@@ -60,50 +60,21 @@ export class MedicosFormPage {
 
         if (this.medicoID) { // atualizar
 
-            //this.medico.especialidades = this.medico.especialidades.split(', ');
-
-            this.medicoProvider.atualizar(this.medicoID, this.medico).then(_ => {
+            /* this.medicoProvider.atualizar(this.medicoID, this.medico).then(_ => { */
+            this.medicoProvider.atualizarFS(this.medicoID, this.medico).then(_ => {
                 this.presentToast('Médico atualizado com sucesso!');
                 this.navCtrl.pop();
             })
 
         } else { // inserir
+            this.medico.status = true; //setando o status do médico para true.
 
-            this.medicoProvider.inserir(this.medico).then(_ => {
+            /* this.medicoProvider.inserir(this.medico).then(_ => { */
+                this.medicoProvider.inserirFS(this.medico).then(_ => {
                 this.presentToast('Médico inserido com sucesso!');
                 this.navCtrl.pop();
             });
         }
-    }
-
-    excluir() {
-        const confirm = this.alertCtrl.create({
-            title: 'Excluir?',
-            message: 'Tem certeza que deseja excluir este médico?',
-            buttons: [
-                {
-                    text: 'Não',
-                    handler: () => {
-                        console.log('Disagree clicked');
-                    }
-                },
-                {
-                    text: 'Excluir',
-                    handler: () => {
-
-                        this.medicoProvider.remover(this.medicoID)
-                            .then(_ => {
-                                console.log('ok')
-                            })
-                            .catch(error => {
-                                console.log('error', error);
-                            })
-
-                    }
-                }
-            ]
-        });
-        confirm.present();
     }
 
     presentToast(mensagem) {

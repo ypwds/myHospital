@@ -24,10 +24,10 @@
 
         <ion-item>
             <ion-label>Especialidades</ion-label>
-            <ion-select [(ngModel)]="medico.especialidades" multiple="true" cancelText="Não" okText="Ok">
-              <ion-option *ngFor="let item of especialidades" value="{{item}}">{{item}}</ion-option>
+            <ion-select [(ngModel)]="medico.especialidades" multiple="true" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let item of especialidades" value="{{item}}">{{item}}</ion-option>
             </ion-select>
-          </ion-item>
+        </ion-item>
 
         <ion-buttons right start>
             <button ion-button icon-only round (click)="salvar()">

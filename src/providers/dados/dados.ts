@@ -11,9 +11,9 @@ export class DadosProvider {
     pegarEspecialidades() {
         let especialidades = [];
         this.http.get('assets/db/especialidades.json').toPromise().then(_data => {
-            console.log("Recebendo as especialidades: ", _data);
+            //console.log("Recebendo as especialidades: ", _data);
 
-            const dados = Object.keys(_data).map(idex => {
+            Object.keys(_data).map(idex => {
                 especialidades.push(_data[idex]);
             });
 

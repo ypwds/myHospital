@@ -18,10 +18,7 @@ export class MedicosListPage {
         public medicoProvider: MedicosProvider,
         public modalCtrl: ModalController
     ) {
-        this.medicoProvider.listar().subscribe(_data => {
-            console.log(_data);
-            this.medicos = _data;
-        })
+        this.carregarLista();
     }
 
     ionViewDidLoad() {
@@ -62,7 +59,8 @@ export class MedicosListPage {
                     text: 'Excluir',
                     handler: () => {
 
-                        this.medicoProvider.remover(medicoID)
+                        /* this.medicoProvider.remover(medicoID) */
+                        this.medicoProvider.removerFS(medicoID)
                             .then(_ => {
                                 console.log('ok');
                                 this.presentToast('Médico excluido com sucesso!');
@@ -105,10 +103,7 @@ export class MedicosListPage {
                     let especialidade = _params.especialidade;
                     console.log("Especialidade: ", especialidade);
 
-                    this.medicoProvider.buscarFS(especialidade).subscribe(_data => {
-                        console.log("Busca: ", _data);
-                        this.medicos = _data;
-                    })
+                    this.medicos = this.medicoProvider.buscarFS(especialidade);
 
                 }
             }

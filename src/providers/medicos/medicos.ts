@@ -16,6 +16,25 @@ export class MedicosProvider {
         console.log('Hello MedicosProvider Provider');
     }
 
+    //Funções do banco RealTime
+
+    inserir(medico) {
+        return this.afd.list(this.ENTIDADE).push(medico);
+    }
+
+    atualizar(id, medico) {
+        return this.afd.object(this.ENTIDADE + '/' + id).update(medico);
+    }
+
+    remover(id) {
+        return this.afd.object(this.ENTIDADE + '/' + id).remove();
+    }
+
+    buscar(especialidade: string) {
+        return this.afd.list(this.ENTIDADE, ref => ref.orderByChild('especialidades').equalTo(especialidade))
+            .snapshotChanges()
+            .map(item => item.map(changes => ({ key: changes.payload.key, value: changes.payload.val() })));
+    }
     listar() {
         //return this.afd.list('/medicos').valueChanges();
         return this.afd.list(this.ENTIDADE)
@@ -23,56 +42,50 @@ export class MedicosProvider {
             .map(item => item.map(changes => ({ key: changes.payload.key, value: changes.payload.val() })));
     }
 
-    listarFS() {
-        return this.afs.collection(this.ENTIDADE)
-            .snapshotChanges()
-            .map(item => item.map(changes => ({ key: changes.payload.doc.id, value: changes.payload.doc.data() })));
-    }
+    //Funções do Banco FireStore
 
-    buscar(especialidade: string) { //Editar RealTime
-        return this.afd.list(this.ENTIDADE, ref => ref.orderByChild('especialidades').equalTo(especialidade))
-            .snapshotChanges()
-            .map(item => item.map(changes => ({ key: changes.payload.key, value: changes.payload.val() })));
-    }
-
-    buscarFS(especialidade: string) { //Editar FireStore
-        console.log(especialidade);
-
-        return this.afs.collection(this.ENTIDADE,
-            ref => ref
-                .where('especialidades', '==', especialidade)
-                .orderBy('especialidades')
-        )
-            .snapshotChanges()
-            .map(item => item.map(changes => ({ key: changes.payload.doc.id, value: changes.payload.doc.data() })));
-    }
-
-    inserir(medico) {
-        medico.status = true;
-        return this.afd.list(this.ENTIDADE).push(medico);
-    }
-
-    inserirFS(medico) { //Banco de Dados - FireStore
+    inserirFS(medico) {
         medico.status = true;
         const obj = JSON.parse(JSON.stringify(medico));
         const id = this.afs.createId();
         return this.afs.doc(this.ENTIDADE + '/' + id).set(obj);
     }
 
-    atualizar(id, medico) {
-        medico.especialidades = medico.especialidades.split(', '); //atualizando a esp. em array
-        return this.afd.object(this.ENTIDADE + '/' + id).update(medico);
-    }
-
-    atualizarFS(id, medico) { //Banco de Dados - FireStore
+    atualizarFS(id, medico) {
         return this.afs.doc(this.ENTIDADE + '/' + id).update(medico);
     }
 
-    remover(id) {
-        return this.afd.object(this.ENTIDADE + '/' + id).remove();
-    }
-    removerFS(id) { //Banco de Dados - FireStore
+    removerFS(id) {
         return this.afs.doc(this.ENTIDADE + '/' + id).delete();
+    }
+
+    buscarFS(especialidade: string) {
+        
+        let medicos = [];
+        
+        console.log(especialidade);
+        
+        this.listarFS().subscribe(_data => {
+            console.log("Médicos: ", _data);
+
+            for (let i = 0; i < _data.length; i++) {
+                for (let j = 0; j < _data[i].value.especialidades.length; j++) {
+                    if(_data[i].value.especialidades[j] == especialidade){
+                        //console.log('Entrei', _data[i]);
+                        medicos.push(_data[i]);
+                    }
+                }
+            }
+        });
+
+        //console.log("Médicos do Filtro: ", medicos);
+        return medicos;
+    }
+
+    listarFS() {
+        return this.afs.collection(this.ENTIDADE)
+            .snapshotChanges()
+            .map(item => item.map(changes => ({ key: changes.payload.doc.id, value: changes.payload.doc.data() })));
     }
 
 }
