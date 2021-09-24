@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Medico } from '../../models/medico';
+import { DadosProvider } from '../../providers/dados/dados';
 import { MedicosProvider } from '../../providers/medicos/medicos';
 
 @IonicPage()
@@ -12,7 +13,9 @@ export class MedicosFormPage {
 
     titulo = '';
 
-    especialidades = '';
+    especialidades = [];
+
+    //especialidades = '';
 
     medicoID = undefined;
     medico = new Medico();
@@ -22,6 +25,7 @@ export class MedicosFormPage {
         public toastCtrl: ToastController,
         public alertCtrl: AlertController,
         public medicoProvider: MedicosProvider,
+        public dadosProvider: DadosProvider
     ) {
         const medicoID = this.navParams.get('itemID');
         const medico = this.navParams.get('item');
@@ -45,13 +49,17 @@ export class MedicosFormPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad MedicosFormPage');
+
+        //Pegando as especialidades do .json
+        this.especialidades = this.dadosProvider.pegarEspecialidades();
+        console.log("Dados recebidos:", this.especialidades);
     }
 
     salvar() {
         console.log(this.medico);
 
         if (this.medicoID) { // atualizar
-            
+
             //this.medico.especialidades = this.medico.especialidades.split(', ');
 
             this.medicoProvider.atualizar(this.medicoID, this.medico).then(_ => {

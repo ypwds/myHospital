@@ -23,9 +23,11 @@
         </ion-item>
 
         <ion-item>
-            <ion-label stacked>Especialidades</ion-label>
-            <ion-input type="text" [(ngModel)]="medico.especialidades"></ion-input>
-        </ion-item>
+            <ion-label>Especialidades</ion-label>
+            <ion-select [(ngModel)]="medico.especialidades" multiple="true" cancelText="Não" okText="Ok">
+              <ion-option *ngFor="let item of especialidades" value="{{item}}">{{item}}</ion-option>
+            </ion-select>
+          </ion-item>
 
         <ion-buttons right start>
             <button ion-button icon-only round (click)="salvar()">

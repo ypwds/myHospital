@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AlertController, IonicPage, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ClinicasProvider } from '../../providers/clinicas/clinicas';
 
 @IonicPage()
@@ -15,9 +15,10 @@ export class ClinicasListPage {
         public navParams: NavParams,
         public toastCtrl: ToastController,
         public alertCtrl: AlertController,
-        public clinicassProvider: ClinicasProvider,
+        public clinicasProvider: ClinicasProvider,
+        public modalCtrl: ModalController
     ) {
-        this.clinicassProvider.listar().subscribe(_data => {
+        this.clinicasProvider.listar().subscribe(_data => {
             console.log(_data);
             this.clinicas = _data;
         })
@@ -61,7 +62,7 @@ export class ClinicasListPage {
                     text: 'Excluir',
                     handler: () => {
 
-                        this.clinicassProvider.remover(clinicaID)
+                        this.clinicasProvider.remover(clinicaID)
                             .then(_ => {
                                 console.log('ok');
                                 this.presentToast('Clínica excluido com sucesso!');
@@ -86,6 +87,44 @@ export class ClinicasListPage {
             closeButtonText: 'Ok'
         });
         toast.present();
+    }
+
+    openFilter() {
+        const modal = this.modalCtrl.create('ClinicasFilterPage');
+
+        modal.onDidDismiss(_params => {
+            if (_params !== undefined) {
+
+                if (_params.isLimpar) {
+
+                    console.log("isLimpar");
+                    this.carregarLista();
+
+                } else {
+
+                    let cidade = _params.cidade;
+                    let uf = _params.uf;
+                    console.log("Estado: ", uf);
+                    console.log("Cidade: ", cidade);
+
+                    this.clinicasProvider.buscarFS(uf, cidade).subscribe(_data => {
+                        console.log("Busca: ", _data);
+                        this.clinicas = _data;
+                    });
+
+                }
+            }
+        });
+
+        modal.present();
+    }
+
+    carregarLista() {
+        /* this.clinicasProvider.listar().subscribe(_data => { */
+        this.clinicasProvider.listarFS().subscribe(_data => {
+            console.log(_data);
+            this.clinicas = _data;
+        });
     }
 
 }

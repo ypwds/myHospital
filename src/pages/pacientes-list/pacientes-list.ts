@@ -108,7 +108,7 @@ export class PacientesListPage {
                     this.pacientesProvider.buscarFS(uf, cidade).subscribe(_data => {
                         console.log("Busca: ", _data);
                         this.pacientes = _data;
-                    })
+                    });
 
                 }
             }

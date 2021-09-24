@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { AlertController, IonicPage, ModalController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { MedicosProvider } from '../../providers/medicos/medicos';
 
 @IonicPage()
@@ -16,6 +16,7 @@ export class MedicosListPage {
         public toastCtrl: ToastController,
         public alertCtrl: AlertController,
         public medicoProvider: MedicosProvider,
+        public modalCtrl: ModalController
     ) {
         this.medicoProvider.listar().subscribe(_data => {
             console.log(_data);
@@ -86,6 +87,42 @@ export class MedicosListPage {
             closeButtonText: 'Ok'
         });
         toast.present();
+    }
+
+    openFilter() {
+        const modal = this.modalCtrl.create('MedicosFilterPage');
+
+        modal.onDidDismiss(_params => {
+            if (_params !== undefined) {
+
+                if (_params.isLimpar) {
+
+                    console.log("isLimpar");
+                    this.carregarLista();
+
+                } else {
+
+                    let especialidade = _params.especialidade;
+                    console.log("Especialidade: ", especialidade);
+
+                    this.medicoProvider.buscarFS(especialidade).subscribe(_data => {
+                        console.log("Busca: ", _data);
+                        this.medicos = _data;
+                    })
+
+                }
+            }
+        });
+
+        modal.present();
+    }
+
+    carregarLista() {
+        /* this.medicosProvider.listar().subscribe(_data => { */
+        this.medicoProvider.listarFS().subscribe(_data => {
+            console.log(_data);
+            this.medicos = _data;
+        });
     }
 
 }
