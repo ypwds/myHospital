@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { Estado } from '../../models/estado';
 import { Paciente } from '../../models/paciente';
+import { DadosProvider } from '../../providers/dados/dados';
 import { PacientesProvider } from '../../providers/pacientes/pacientes';
 
 @IonicPage()
@@ -11,6 +13,8 @@ import { PacientesProvider } from '../../providers/pacientes/pacientes';
 export class PacientesFormPage {
 
     titulo = '';
+    estado = [];
+    cidades = [];
 
     pacienteID = undefined;
     paciente = new Paciente();
@@ -20,7 +24,9 @@ export class PacientesFormPage {
         public toastCtrl: ToastController,
         public alertCtrl: AlertController,
         public pacientesProvider: PacientesProvider,
+        public dadosProvider: DadosProvider,
     ) {
+        //Configuração da Página de Atualizar e Adicionar
         const pacienteID = this.navParams.get('itemID');
         const paciente = this.navParams.get('item');
 
@@ -43,6 +49,10 @@ export class PacientesFormPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad PacientesFormPage');
+        //Listando Estados e Cidades
+        this.estado = this.dadosProvider.listarEstados();
+        console.log(this.estado);
+
     }
 
     salvar() {

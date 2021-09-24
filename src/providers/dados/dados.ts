@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Estado } from '../../models/estado';
 
 @Injectable()
 export class DadosProvider {
@@ -10,6 +11,7 @@ export class DadosProvider {
 
     pegarEspecialidades() {
         let especialidades = [];
+
         this.http.get('assets/db/especialidades.json').toPromise().then(_data => {
             //console.log("Recebendo as especialidades: ", _data);
 
@@ -19,7 +21,18 @@ export class DadosProvider {
 
         });
 
+        //console.log(especialidades);
+
         return especialidades;
     }
+
+    listarEstados() {
+        let estados = [];
+
+        return this.http.get<Estado[]>('assets/db/cidades-estados.json');
+
+    }
+    
+    listarCidades(estado: string) { }
 
 }
