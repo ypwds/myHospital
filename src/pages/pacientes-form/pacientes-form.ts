@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AlertController, IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { Estado } from '../../models/estado';
 import { Paciente } from '../../models/paciente';
 import { DadosProvider } from '../../providers/dados/dados';
 import { PacientesProvider } from '../../providers/pacientes/pacientes';
@@ -13,7 +12,7 @@ import { PacientesProvider } from '../../providers/pacientes/pacientes';
 export class PacientesFormPage {
 
     titulo = '';
-    estado = [];
+    estados = [];
     cidades = [];
 
     pacienteID = undefined;
@@ -50,8 +49,20 @@ export class PacientesFormPage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad PacientesFormPage');
         //Listando Estados e Cidades
-        this.estado = this.dadosProvider.listarEstados();
-        console.log(this.estado);
+        const estadosArr = this.dadosProvider.listarEstados();
+
+
+        console.log(typeof estadosArr);
+        console.log(typeof this.estados);
+        //console.log(estadosArr[0].cidades);
+
+/*         for (let i = 0; i = estadosArr.length;) {
+            for (let j = 0; j < estadosArr[0].length; j++) { 
+                console.log("Estados Brasileiros: ",estadosArr[i].length);            
+            }
+        } */
+
+        //console.log(this.estado);
 
     }
 

@@ -2,5 +2,5 @@ export class Estado {
 
     nome: string = '';
     sigla: string = '';
-    cidades: []
+    cidades: String[];
 }

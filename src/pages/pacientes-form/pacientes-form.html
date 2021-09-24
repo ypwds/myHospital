@@ -35,7 +35,7 @@
         <ion-item>
             <ion-label>UF</ion-label>
             <ion-select [(ngModel)]="paciente.uf">
-                <ion-option *ngFor="let uf of estados" value="{{uf.sigla}}">{{uf.nome}}</ion-option>
+                <ion-option *ngFor="let uf of estados" value="{{uf[0].sigla}}">{{uf[0].nome}}</ion-option>
             </ion-select>
         </ion-item>
 

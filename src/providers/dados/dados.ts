@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Estado } from '../../models/estado';
 
 @Injectable()
 export class DadosProvider {
@@ -29,10 +28,17 @@ export class DadosProvider {
     listarEstados() {
         let estados = [];
 
-        return this.http.get<Estado[]>('assets/db/cidades-estados.json');
+        this.http.get('assets/db/cidades-estados.json').toPromise().then(_data => {
+            Object.keys(_data).map(idex => {
+                estados.push(_data[idex]);
+            });
+
+        });
+
+        return estados;
 
     }
-    
+
     listarCidades(estado: string) { }
 
 }
