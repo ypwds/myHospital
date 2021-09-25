@@ -11,9 +11,10 @@ import { PacientesProvider } from '../../providers/pacientes/pacientes';
 })
 export class PacientesFormPage {
 
-    titulo = '';
-    estados = [];
-    cidades = [];
+    titulo = '';  //Mudança de Títudo para quando for atualizar ou adicionar
+    estados = []; //Salvar os estados recebidos do Json
+    cidades = []; //Salvar as cidades recebidos do Json de acordo com o estado selecionado
+    showCity = false; //fazer aparece o campo de cidade quando o estado for selecionado.
 
     pacienteID = undefined;
     paciente = new Paciente();
@@ -46,24 +47,22 @@ export class PacientesFormPage {
         }
     }
 
+
+
     ionViewDidLoad() {
         console.log('ionViewDidLoad PacientesFormPage');
-        //Listando Estados e Cidades
-        const estadosArr = this.dadosProvider.listarEstados();
+    }
 
-
-        console.log(typeof estadosArr);
-        console.log(typeof this.estados);
-        //console.log(estadosArr[0].cidades);
-
-/*         for (let i = 0; i = estadosArr.length;) {
-            for (let j = 0; j < estadosArr[0].length; j++) { 
-                console.log("Estados Brasileiros: ",estadosArr[i].length);            
-            }
-        } */
-
-        //console.log(this.estado);
-
+    ionViewCanEnter(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.dadosProvider.listarEstados().then(_data => {
+                this.estados = _data;
+                console.log(_data);
+                resolve(true);
+            }).catch(() => {
+                resolve(false);
+            });
+        })
     }
 
     salvar() {
@@ -100,6 +99,23 @@ export class PacientesFormPage {
             closeButtonText: 'Ok'
         });
         toast.present();
+    }
+
+    selecionado() {
+        this.showCity = true;
+
+        console.log("O Estado é: ", this.paciente.uf);
+
+        //Listando Cidades
+        new Promise((resolve, reject) => {
+            this.dadosProvider.listarCidades(this.paciente.uf).then(_data => {
+                this.cidades = _data;
+                resolve(true);
+            }).catch(() => {
+                resolve(false);
+            });
+        })
+
     }
 
 }

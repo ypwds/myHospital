@@ -23,19 +23,17 @@
         </ion-item>
 
         <ion-item>
-            <ion-label stacked>Cidade</ion-label>
-            <ion-input type="text" [(ngModel)]="paciente.cidade"></ion-input>
+            <ion-label>UF</ion-label>
+            <ion-select (ionChange)="selecionado()" [(ngModel)]="paciente.uf" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let uf of estados" value="{{uf.Sigla}}">{{uf.Nome}}
+                </ion-option>
+            </ion-select>
         </ion-item>
 
-        <!--<ion-item>
-             <ion-label stacked>UF</ion-label>
-           <ion-input type="text" [(ngModel)]="paciente.uf"></ion-input>
-        </ion-item> -->
-
-        <ion-item>
-            <ion-label>UF</ion-label>
-            <ion-select [(ngModel)]="paciente.uf">
-                <ion-option *ngFor="let uf of estados" value="{{uf[0].sigla}}">{{uf[0].nome}}</ion-option>
+        <ion-item *ngIf="this.showCity">
+            <ion-label>Cidade</ion-label>
+            <ion-select [(ngModel)]="paciente.cidade" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let city of cidades" value="{{city}}">{{city}}</ion-option>
             </ion-select>
         </ion-item>
 
