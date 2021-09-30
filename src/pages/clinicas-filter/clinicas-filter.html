@@ -1,15 +1,39 @@
-<!--
-  Generated template for the ClinicasFilterPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>clinicas-filter</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+
+        <ion-title>Filtrar Clínicas</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="fechar()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+
+    <ion-list>
+
+        <ion-item>
+            <ion-label>UF</ion-label>
+            <ion-select (ionChange)="selecionado()" [(ngModel)]="uf" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let uf of estados" value="{{uf.Sigla}}">{{uf.Nome}}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item *ngIf="this.showCity">
+            <ion-label>Cidade</ion-label>
+            <ion-select [(ngModel)]="cidade" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let city of cidades" value="{{city}}">{{city}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+    </ion-list>
+
+    <button ion-button full (click)="filtrar()">Filtrar</button>
+    <button ion-button full (click)="limpar()" color='light'>Limpar</button>
 
 </ion-content>

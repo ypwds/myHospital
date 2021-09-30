@@ -12,18 +12,22 @@
 
 <ion-content padding>
     <ion-list>
+
         <ion-item>
             <ion-label>UF</ion-label>
-            <ion-select [(ngModel)]="uf" cancelText="Cancelar" okText="Ok">
-                <ion-option *ngFor="let uf of ufArr" value="{{uf}}">{{uf}}</ion-option>
+            <ion-select (ionChange)="selecionado()" [(ngModel)]="uf" cancelText="Cancelar" okText="Ok">
+                <ion-option *ngFor="let uf of estados" value="{{uf.Sigla}}">{{uf.Nome}}
+                </ion-option>
             </ion-select>
         </ion-item>
-        <ion-item>
+
+        <ion-item *ngIf="this.showCity">
             <ion-label>Cidade</ion-label>
             <ion-select [(ngModel)]="cidade" cancelText="Cancelar" okText="Ok">
-                <ion-option *ngFor="let city of cidadeArr" value="{{city}}">{{city}}</ion-option>
+                <ion-option *ngFor="let city of cidades" value="{{city}}">{{city}}</ion-option>
             </ion-select>
         </ion-item>
+
     </ion-list>
 
     <button ion-button full (click)="filtrar()">Filtrar</button>

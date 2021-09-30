@@ -14,7 +14,7 @@ export class PacientesFormPage {
     titulo = '';  //Mudança de Títudo para quando for atualizar ou adicionar
     estados = []; //Salvar os estados recebidos do Json
     cidades = []; //Salvar as cidades recebidos do Json de acordo com o estado selecionado
-    showCity = false; //fazer aparece o campo de cidade quando o estado for selecionado.
+    showCity; //fazer aparece o campo de cidade quando o estado for selecionado.
 
     pacienteID = undefined;
     paciente = new Paciente();
@@ -34,12 +34,16 @@ export class PacientesFormPage {
         console.log(paciente);
 
         if (pacienteID) { // tem pacienteID?
+
             this.pacienteID = pacienteID;
             this.paciente = paciente;
 
             this.titulo = 'Editar Paciente';
 
+            this.selecionado();
+
         } else {
+            this.showCity = false;
             this.pacienteID = undefined;
             this.paciente = new Paciente();
 

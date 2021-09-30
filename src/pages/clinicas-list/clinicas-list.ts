@@ -18,10 +18,12 @@ export class ClinicasListPage {
         public clinicasProvider: ClinicasProvider,
         public modalCtrl: ModalController
     ) {
-        this.clinicasProvider.listar().subscribe(_data => {
+        /* this.clinicasProvider.listar().subscribe(_data => {
             console.log(_data);
             this.clinicas = _data;
-        })
+        }) */
+
+        this.carregarLista();
     }
 
     ionViewDidLoad() {
@@ -62,7 +64,7 @@ export class ClinicasListPage {
                     text: 'Excluir',
                     handler: () => {
 
-                        this.clinicasProvider.remover(clinicaID)
+                        this.clinicasProvider.removerFS(clinicaID)
                             .then(_ => {
                                 console.log('ok');
                                 this.presentToast('Clínica excluido com sucesso!');
