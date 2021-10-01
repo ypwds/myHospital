@@ -72,6 +72,9 @@ export class ClinicasFormPage {
         console.log(this.clinica);
         this.clinicasProvider.inserir(this.clinica); */
 
+        this.clinica.lat = parseFloat(this.clinica.lat + '');
+        this.clinica.lng = parseFloat(this.clinica.lng + '');
+
         if (this.clinicaID) { // atualizar
             this.clinicasProvider.atualizarFS(this.clinicaID, this.clinica).then(_ => {
                 this.showCity = true; //deveria funcionar

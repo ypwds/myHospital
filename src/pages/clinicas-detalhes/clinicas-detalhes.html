@@ -15,4 +15,15 @@
     <p>{{clinica?.value.cidade}} - {{clinica?.value.uf}}</p>
   </ion-item>
 
+  <ion-card>
+    <ion-item>
+        Veja a localização no mapa:
+    </ion-item>
+</ion-card>
+
+<ion-grid class="mapa-grid">
+    <div #map id="map">
+    </div>
+</ion-grid>
+
 </ion-content>

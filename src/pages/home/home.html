@@ -3,19 +3,20 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Home</ion-title>
+        <ion-title>Localização das Clínicas</ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page" padding>
+<ion-content>
 
     <ion-card>
-        <img src="https://www.economus.com.br/wp-content/uploads/2020/12/banner-1.jpg" />
-        <div class="card-title">Bem-Vindo</div>
-        <div class="card-subtitle">41 Listings</div>
+        <ion-item>
+            Localize a clínica mais perto de você!
+        </ion-item>
     </ion-card>
 
-    <button onclick="window.open('https://firebasestorage.googleapis.com/v0/b/myhospital-27592.appspot.com/o/app-debug.apk?alt=media&token=87b0d7f3-b6b2-40a4-97bd-5c2a26817b45', '_system', 'location=yes'); return false;" ion-button block
-        round>Baixar APK</button>
-
+    <ion-grid class="mapa-grid">
+        <div #map id="map">
+        </div>
+    </ion-grid>
 </ion-content>
