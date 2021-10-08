@@ -1,30 +1,40 @@
-<ion-header>
-    <ion-navbar>
-        <ion-title>Cadastrar Usuário</ion-title>
+<ion-header no-border>
+    <ion-navbar transparent>
+        <ion-title>Cadastrar usuário</ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list no-lines>
+<ion-content padding class="corpo">
 
-        <ion-item>
-            <ion-label floating>Nome</ion-label>
-            <ion-input type="text" [(ngModel)]="nome"></ion-input>
-        </ion-item>
+    <ion-grid class="grid-logo">
+        <ion-row align-items-center justify-content-center>
+            <ion-col col-12 align-self-center>
+                <img src="../../assets/imgs/8061.png">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
-        <ion-item>
-            <ion-label floating>E-mail</ion-label>
-            <ion-input type="text" [(ngModel)]="email"></ion-input>
-        </ion-item>
+    <ion-grid class="grid-list">
+        <ion-row align-items-center justify-content-center>
+            <ion-col align-self-center col-12 col-md-4 col-lg-4 col-xl-4>
+                <ion-list class="corpo-input" no-lines>
 
-        <ion-item>
-            <ion-label floating>Senha</ion-label>
-            <ion-input type="password" [(ngModel)]="senha"></ion-input>
-        </ion-item>
+                    <ion-item>
+                        <ion-input type="text" [(ngModel)]="nome" placeholder="Nome"></ion-input>
+                    </ion-item>
 
-        <br>
+                    <ion-item>
+                        <ion-input type="text" [(ngModel)]="email" placeholder="E-mail"></ion-input>
+                    </ion-item>
 
-        <button ion-button block (click)="cadastrar()">Cadastrar Usuário</button>
+                    <ion-item>
+                        <ion-input type="password" [(ngModel)]="senha" placeholder="Senha"></ion-input>
+                    </ion-item>
 
-    </ion-list>
+                    <button ion-button class="margin-btn-top btn" block (click)="cadastrar()">Cadastrar</button>
+
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

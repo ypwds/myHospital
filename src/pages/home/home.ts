@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ClinicasProvider } from '../../providers/clinicas/clinicas';
+import { ExportProvider } from '../../providers/export/export';
 
 declare var google: any;
 
@@ -13,7 +14,12 @@ export class HomePage {
     @ViewChild('map') mapElement: ElementRef;
     map;
 
-    constructor(public navCtrl: NavController, public clinicaProvider: ClinicasProvider) { }
+    clinicasArr = [];
+
+    constructor(public navCtrl: NavController,
+        public clinicaProvider: ClinicasProvider,
+        public exportProvider: ExportProvider,
+    ) { }
 
     ionViewDidLoad() {
         this.map = this.criarMap(this.mapElement);
@@ -21,7 +27,9 @@ export class HomePage {
         this.clinicaProvider.listarFS().subscribe(_data => {
             //console.log("Clínicas recebidas: ", _data);
 
-            for(let i = 0; i < _data.length; i++){
+            this.clinicasArr = _data;
+
+            for (let i = 0; i < _data.length; i++) {
                 const element = _data[i];
 
                 let _lat = element.value.lat;
@@ -95,6 +103,43 @@ export class HomePage {
         return new google.maps.InfoWindow({
             content: contentHtml
         })
+    }
+
+    gerarPDF() {
+        this.exportProvider.gerarPDF(this.exportarDados(), 'Clinicas');
+    }
+
+    gerarExel() {
+        this.exportProvider.gerarExcel(this.exportarDados(), 'Clinicas');
+    }
+
+    gerarCVS() {
+        this.exportProvider.gerarCSV(this.exportarDados(), 'Clinicas');
+    }
+
+    private exportarDados() {
+        let jsonArr = [];
+
+        for (let i = 0; i < this.clinicasArr.length; i++) {
+            const element = this.clinicasArr[i];
+
+            //const key = element.key;
+            const value = element.value;
+
+            let _item = {
+                'Cidade': value.cidade,
+                'Endereço': value.endereco,
+                'UF': value.uf,
+                'Latitude': value.lat,
+                'Longitude': value.lng,
+                'Nome': value.nome,
+                'Link': 'https://www.google.com/maps/?q=' + value.lat + ',' + value.lng,
+            };
+
+            jsonArr.push(_item);
+        }
+
+        return jsonArr;
     }
 
 }

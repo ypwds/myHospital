@@ -7,7 +7,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
 
     <ion-card>
         <ion-item>
@@ -19,4 +19,21 @@
         <div #map id="map">
         </div>
     </ion-grid>
+
+    <ion-fab bottom left>
+        <button ion-fab color="light">
+            <ion-icon name="arrow-dropright"></ion-icon>
+        </button>
+        <ion-fab-list side="right">
+            <button ion-fab (click)="gerarPDF()">
+                <ion-icon name="document"></ion-icon>
+            </button>
+            <button ion-fab (click)="gerarExel()">
+                <ion-icon name="attach"></ion-icon>
+            </button>
+            <button ion-fab (click)="gerarCVS()">
+                <ion-icon name="apps"></ion-icon>
+            </button>
+        </ion-fab-list>
+    </ion-fab>
 </ion-content>

@@ -20,6 +20,7 @@ import { MedicosProvider } from '../providers/medicos/medicos';
 import { PacientesProvider } from '../providers/pacientes/pacientes';
 import { ClinicasProvider } from '../providers/clinicas/clinicas';
 import { DadosProvider } from '../providers/dados/dados';
+import { ExportProvider } from '../providers/export/export';
 
 /* const firebaseConfig = {
   apiKey: "AIzaSyACn05thv-AWI_hbgnb62K5hu_oqfd8nC0",
@@ -62,7 +63,8 @@ import { DadosProvider } from '../providers/dados/dados';
     MedicosProvider,
     PacientesProvider,
     ClinicasProvider,
-    DadosProvider
+    DadosProvider,
+    ExportProvider
   ]
 })
 export class AppModule {}

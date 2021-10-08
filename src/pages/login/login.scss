@@ -1,22 +1,57 @@
 page-login {
-    .flex-center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        flex-direction: column;
-
-        ion-list {
-            width: 100%;
-        }
-
-        img {
-            transition: transform 0.2s;
-            &:hover {
-                transform: scale(1.2);
+    .corpo {
+        background: url("../../assets/imgs/back-hospital.jpg") no-repeat center center/cover transparent;
+        .grid-logo {
+            ion-col {
+                text-align: center;
             }
-            max-width: 50%;
-            height: 30%;
+
+            img {
+                width: 175px;
+            }
         }
+        .corpo-input {
+            ion-item {
+                //background-color: transparent;
+
+                ion-input {
+                    color: white;
+                }
+
+                ::placeholder {
+                    color: #ddd;
+                }
+            }
+
+            .margin-input-top {
+                margin-top: 20px;
+                border-radius: 30px;
+                background-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .margin-btn-top {
+                margin-top: 20px;
+            }
+
+            .btn {
+                background-color: #e41b57;
+                border-radius: 30px;
+                text-transform: capitalize;
+            }
+
+            .btn-esqueceu {
+                text-transform: none;
+                background-color: transparent;
+                h5 {
+                    color: #ff0000;
+                }
+                text-align: right;
+            }
+        }
+    }
+
+    .btn-link {
+        color: white;
+        text-transform: none;
     }
 }

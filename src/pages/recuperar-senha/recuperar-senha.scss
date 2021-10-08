@@ -1,3 +1,43 @@
 page-recuperar-senha {
+    .corpo {
+        background: url("../../assets/imgs/back-hospital.jpg") no-repeat center center/cover transparent;
+        .grid-logo {
+            ion-col {
+                text-align: center;
+            }
 
+            img {
+                width: 175px;
+            }
+        }
+        .corpo-input {
+            ion-item {
+                //background-color: transparent;
+                border-radius: 30px;
+                background-color: rgba(255, 255, 255, 0.3);
+
+                ion-input {
+                    color: white;
+                }
+
+                ::placeholder {
+                    color: #ddd;
+                }
+            }
+
+            .margin-input-top {
+                margin-top: 20px;
+            }
+
+            .margin-btn-top {
+                margin-top: 30px;
+            }
+
+            .btn {
+                background-color: #e41b57;
+                border-radius: 30px;
+                text-transform: capitalize;
+            }
+        }
+    }
 }
