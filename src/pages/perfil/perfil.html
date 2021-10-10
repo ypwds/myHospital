@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Perfil</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item no-lines>
+            <ion-avatar class="img-center">
+                <img [src]="foto">
+            </ion-avatar>
+        </ion-item>
+
+        <button ion-button clear full (click)="ecolherFoto()">Escolher Foto</button>
+        <input type="file" #fileUserPhoto style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
+
+        <ion-item>
+            <ion-label stacked>Nome</ion-label>
+            <ion-input type="text" [(ngModel)]="perfil.nome"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>E-mail</ion-label>
+            <ion-input type="text" [(ngModel)]="perfil.email"></ion-input>
+        </ion-item>
+
+    </ion-list>
+
+    <p>
+        <button ion-button color="light" full (click)="salvar()">Salvar</button>
+    </p>
+</ion-content>

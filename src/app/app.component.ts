@@ -5,7 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 
-import { Storage } from "@ionic/storage";
+/* import { Storage } from "@ionic/storage"; */
+import { UserProvider } from '../providers/user/user';
 
 @Component({
     templateUrl: 'app.html'
@@ -21,13 +22,15 @@ export class MyApp {
     constructor(public platform: Platform,
         public statusBar: StatusBar,
         public splashScreen: SplashScreen,
-        public storage: Storage
+        public userProvider: UserProvider,
+        /* public storage: Storage */
     ) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
         this.pages = [
             { title: 'Home', component: HomePage },
+            { title: 'Perfil', component: 'PerfilPage' },
             { title: 'Clínicas', component: 'ClinicasListPage' },
             { title: 'Médicos', component: 'MedicosListPage' },
             { title: 'Pacientes', component: 'PacientesListPage' },
@@ -43,7 +46,8 @@ export class MyApp {
             this.splashScreen.hide();
 
             //persistindo o login no app
-            this.storage.get('usuario').then(_usuario => {
+            /* this.storage.get('usuario').then(_usuario => { */
+            this.userProvider.lerLocal().then(_usuario => {
                 console.log('AP COMPONENT', _usuario);
 
                 if (_usuario && _usuario.length > 0) {
@@ -64,7 +68,8 @@ export class MyApp {
     }
 
     sair() {
-        this.storage.remove('usuario').then(_data => {
+        /* this.storage.remove('usuario').then(_data => { */
+        this.userProvider.removerLocal().then(_data => {
             this.nav.setRoot('LoginPage');
         });
     }

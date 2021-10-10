@@ -1,6 +1,7 @@
 page-cadastro-usuario {
     .corpo {
-        background: url("../../assets/imgs/back-hospital.jpg") no-repeat center center/cover transparent;
+        /* background: url("../../assets/imgs/back-hospital.jpg") no-repeat center center/cover transparent; */
+        background: url("../../assets/imgs/backlogin.jpg") no-repeat center center/cover transparent;
         .grid-logo {
             ion-col {
                 text-align: center;
@@ -35,7 +36,8 @@ page-cadastro-usuario {
             }
 
             .btn {
-                background-color: #e41b57;
+                /* background-color: #e41b57; */
+                background-color: #fa4b4b;
                 border-radius: 30px;
                 text-transform: capitalize;
             }
