@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Geolocation } from '@ionic-native/geolocation';
 import { NavController } from 'ionic-angular';
 import { ClinicasProvider } from '../../providers/clinicas/clinicas';
 import { ExportProvider } from '../../providers/export/export';
@@ -15,10 +16,12 @@ export class HomePage {
     map;
 
     clinicasArr = [];
+    marcadorMe;
 
     constructor(public navCtrl: NavController,
         public clinicaProvider: ClinicasProvider,
         public exportProvider: ExportProvider,
+        private geolocation: Geolocation
     ) { }
 
     ionViewDidLoad() {
@@ -52,7 +55,12 @@ export class HomePage {
 
         /*         let marcador = this.addMarcador(-7.606362949778678, -35.2305244098178);
                 marcador.setMap(this.map); */
+
+        /* Setando minha localização no mapa */
+        this.atualizarLocaliacao();
     }
+
+
 
     carregarDadosMapa(itemMarcador) {
         //Criar o marcador
@@ -78,10 +86,11 @@ export class HomePage {
 
             let options = {
                 zoom: 7,
-                center: { lat: -5.081357184675141, lng: -39.70482921223503 }
+                center: { lat: -7.93619114651031, lng: -36.12920366394332 }
             };
 
             return new google.maps.Map(mapElement.nativeElement, options);
+
         } else {
             return undefined;
         }
@@ -91,8 +100,17 @@ export class HomePage {
         return new google.maps.Marker({
             position: { lat: _lat, lng: _lng },
             title: nome,
-            icon: new google.maps.MarkerImage('https://mt.google.com/vt/icon?psize=16&font=fonts/Roboto-Regular.ttf&color=ff330000&name=icons/spotlight/spotlight-waypoint-a.png&ax=44&ay=48&scale=1&text=' + abrev),
-        })
+            /* icon: new google.maps.MarkerImage('https://mt.google.com/vt/icon?psize=16&font=fonts/Roboto-Regular.ttf&color=ff330000&name=icons/spotlight/spotlight-waypoint-a.png&ax=44&ay=48&scale=1&text=' + abrev), */
+            icon: new google.maps.MarkerImage('assets/icon/marcador.png'),
+        });
+    }
+
+    addMarcadorMe(_lat, _lng, nome) {
+        return new google.maps.Marker({
+            position: { lat: _lat, lng: _lng },
+            title: nome,
+            icon: new google.maps.MarkerImage('assets/icon/location.png'),
+        });
     }
 
     addNomeWindow(texto: string) {
@@ -140,6 +158,40 @@ export class HomePage {
         }
 
         return jsonArr;
+    }
+
+    atualizarLocaliacao() {
+        /* Setando minha localização no mapa */
+        this.geolocation.getCurrentPosition().then((resp) => {
+            // resp.coords.latitude
+            // resp.coords.longitude
+            console.log("***GPS***");
+            console.log('lat: ', resp.coords.latitude);
+            console.log('lng: ', resp.coords.longitude);
+
+            if (this.marcadorMe) {
+                this.marcadorMe.setMap(null); //remove o marcado do mapa
+                this.marcadorMe = undefined;
+            }
+
+            this.marcadorMe = this.addMarcadorMe(resp.coords.latitude, resp.coords.longitude, 'Eu');
+            this.marcadorMe.setMap(this.map);
+
+            //criar nome do local ao clicar no marcador
+            const infoClick = this.addNomeWindow('Minha Localização');
+
+            //evento de click no marcador
+            this.marcadorMe.addListener("click", () => {
+                //abre o infoclick e associa ao macador
+                infoClick.open({
+                    anchor: this.marcadorMe,
+                    map: this.map
+                });
+            });
+
+        }).catch((error) => {
+            console.log('Error getting location', error);
+        });
     }
 
 }

@@ -24,6 +24,8 @@ import { ClinicasProvider } from '../providers/clinicas/clinicas';
 import { DadosProvider } from '../providers/dados/dados';
 import { ExportProvider } from '../providers/export/export';
 import { FirebaseStorageProvider } from '../providers/firebase-storage/firebase-storage';
+import { Geolocation } from '@ionic-native/geolocation';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 /* const firebaseConfig = {
   apiKey: "AIzaSyACn05thv-AWI_hbgnb62K5hu_oqfd8nC0",
@@ -69,7 +71,9 @@ import { FirebaseStorageProvider } from '../providers/firebase-storage/firebase-
     ClinicasProvider,
     DadosProvider,
     ExportProvider,
-    FirebaseStorageProvider
+    FirebaseStorageProvider,
+    Geolocation,
+    Camera
   ]
 })
 export class AppModule {}
