@@ -43,6 +43,7 @@ export class UserProvider {
     }
 
     byId(id: string) {
+        /* console.log("Usuário: ", this.afd.object('/usuarios/' + id).valueChanges()); */
         return this.afd.object('/usuarios/' + id).valueChanges();
     }
 

@@ -18,6 +18,9 @@ export class PerfilPage {
     foto = "../../assets/imgs/userFoto.png";
     isUploaded = false;
 
+    nome = '';
+    email = '';
+
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,

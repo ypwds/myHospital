@@ -1,51 +1,50 @@
 <ion-menu [content]="content" type="overlay">
     <ion-header no-border>
-        <ion-toolbar>
-            <!-- <ion-title>Menu</ion-title> -->
-            <ion-toolbar class="user-profile">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col col-4>
-                            <div class="user-avatar">
-                                <img src="assets/imgs/userFoto.png">
-                            </div>
-                        </ion-col>
-                        <ion-col col-8>
-                            <h4>
-                                User Name
-                            </h4>
-                            <p>
-                                Description
-                            </p>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </ion-toolbar>
-        </ion-toolbar>
-        <!-- <ion-list>
-            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" no-lines>
-                <ion-icon name="{{p.seticon}}"></ion-icon>
-                {{p.title}}
-            </button>
-            <button menuClose ion-item (click)="sair()" no-lines>
-                <ion-icon name="exit"></ion-icon>
-                Sair
-            </button>
-        </ion-list> -->
+        <!-- <ion-toolbar>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar> -->
     </ion-header>
 
     <ion-content>
-        <ion-list>
-            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" no-lines>
-                <ion-icon name="{{p.seticon}}"></ion-icon>
-                {{p.title}}
-            </button>
-            <button menuClose ion-item (click)="sair()" no-lines>
-                <ion-icon name="exit"></ion-icon>
-                Sair
+
+        <div class="menu-header-bg"></div>
+        <div class="header-content">
+            <img src="{{foto}}" alt="">
+            <ion-label>
+                <h2>{{nome}}
+                    <ion-icon name="brush" (click)="abrirPerfil()"></ion-icon>
+                </h2>
+            </ion-label>
+        </div>
+
+        <div class="action-button">
+        </div>
+
+        <!-- <ion-list class="menu-items">
+            <ion-item *ngFor="let p of pages" (click)="openPage(p)" no-lines>
+                <ion-icon name="{{p.seticon}}"></ion-icon> {{p.title}}
+            </ion-item>
+            <ion-item (click)="sair()" no-lines>
+                <ion-icon name="exit"></ion-icon> Sair
+            </ion-item>
+        </ion-list> -->
+
+        <ion-list class="menu-items">
+            <button class="btn" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" no-lines>
+                <ion-icon name="{{p.seticon}}"></ion-icon> {{p.title}}
             </button>
         </ion-list>
     </ion-content>
+
+    <ion-footer no-border>
+        <ion-toolbar transparent>
+            <ion-title>
+                <button class="btn-sair" ion-button clear block (click)="sair()" no-lines>
+                    <ion-icon name="exit"></ion-icon>
+                </button>
+            </ion-title>
+        </ion-toolbar>
+    </ion-footer>
 
 </ion-menu>
 
