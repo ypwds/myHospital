@@ -25,7 +25,7 @@ import { DadosProvider } from '../providers/dados/dados';
 import { ExportProvider } from '../providers/export/export';
 import { FirebaseStorageProvider } from '../providers/firebase-storage/firebase-storage';
 import { Geolocation } from '@ionic-native/geolocation';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 
 /* const firebaseConfig = {
   apiKey: "AIzaSyACn05thv-AWI_hbgnb62K5hu_oqfd8nC0",
@@ -64,7 +64,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserProvider,
     MedicosProvider,
     PacientesProvider,
@@ -76,4 +76,4 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
     Camera
   ]
 })
-export class AppModule {}
+export class AppModule { }

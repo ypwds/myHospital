@@ -17,7 +17,7 @@ export class MyApp {
     //rootPage: any = HomePage;
     rootPage: any = 'LoginPage';
 
-    pages: Array<{ title: string, component: any }>;
+    pages: Array<{ title: string, component: any, seticon: string}>;
 
     constructor(public platform: Platform,
         public statusBar: StatusBar,
@@ -29,11 +29,11 @@ export class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Home', component: HomePage },
-            { title: 'Perfil', component: 'PerfilPage' },
-            { title: 'Clínicas', component: 'ClinicasListPage' },
-            { title: 'Médicos', component: 'MedicosListPage' },
-            { title: 'Pacientes', component: 'PacientesListPage' },
+            { title: 'Home', component: HomePage, seticon: 'home' },
+            { title: 'Perfil', component: 'PerfilPage', seticon: 'person' },
+            { title: 'Clínicas', component: 'ClinicasListPage', seticon: 'medkit' },
+            { title: 'Médicos', component: 'MedicosListPage', seticon: 'contact' },
+            { title: 'Pacientes', component: 'PacientesListPage', seticon: 'people' },
         ];
 
     }
